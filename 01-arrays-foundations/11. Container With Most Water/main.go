@@ -2,6 +2,21 @@ package main
 
 import "fmt"
 
+func maxAreaBruteForce(height []int) int {
+	maxWater := 0
+	n := len(height)
+
+	for i := 0; i < n; i++ {
+		for j := i + 1; j < n; j++ {
+			width := j - i
+			h := min(height[i], height[j])
+			water := width * h
+			maxWater = max(maxWater, water)
+		}
+	}
+	return maxWater
+}
+
 func maxArea(height []int) int {
 	n := len(height)
 	L := 0

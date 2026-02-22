@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"sort"
 )
 
 /*func maxOperations(nums []int, k int) int {
@@ -28,7 +27,7 @@ import (
 	return count
 }*/
 
-func maxOperations(nums []int, k int) int {
+/*func maxOperations(nums []int, k int) int {
 	sort.Ints(nums)
 	count := 0
 	n := len(nums)
@@ -45,6 +44,22 @@ func maxOperations(nums []int, k int) int {
 			R--
 		} else {
 			L++
+		}
+	}
+	return count
+}*/
+
+func maxOperations(nums []int, k int) int {
+	waitingRoom := make(map[int]int)
+	count := 0
+
+	for i := 0; i < len(nums); i++ {
+		complement := k - nums[i]
+		if waitingRoom[complement] > 0 {
+			waitingRoom[complement]--
+			count++
+		} else {
+			waitingRoom[nums[i]]++
 		}
 	}
 	return count

@@ -57,8 +57,8 @@ func maxOperations_HashMap(nums []int, k int) int {
 	for i := 0; i < len(nums); i++ {
 		complement := k - nums[i]
 		if waitingRoom[complement] > 0 {
-			waitingRoom[complement]--
 			count++
+			waitingRoom[complement]--
 		} else {
 			waitingRoom[nums[i]]++
 		}
@@ -67,6 +67,6 @@ func maxOperations_HashMap(nums []int, k int) int {
 }
 
 func main() {
-	fmt.Println(maxOperations_HashMap([]int{1, 2, 3, 4}, 5))    // 2
-	fmt.Println(maxOperations_HashMap([]int{3, 1, 3, 4, 3}, 6)) // 1
+	fmt.Println(maxOperations_HashMap([]int{1, 2, 3, 4}, 5))
+	fmt.Println(maxOperations_HashMap([]int{3, 1, 3, 4, 3}, 6))
 }

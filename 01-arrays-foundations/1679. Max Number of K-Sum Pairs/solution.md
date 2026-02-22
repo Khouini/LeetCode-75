@@ -16,6 +16,34 @@ for each i:
         if nums[i] + nums[j] == k → count it, mark both as used
 ```
 
+```go
+func maxOperations(nums []int, k int) int {
+    n := len(nums)
+    used := make([]bool, n) // track which elements have already been paired
+    count := 0
+
+    for i := 0; i < n; i++ {
+        if used[i] {
+            continue // i was already paired in a previous round, skip it
+        }
+        for j := i + 1; j < n; j++ {
+            if used[j] {
+                continue // j was already paired, skip it
+            }
+            if nums[i]+nums[j] == k {
+                count++
+                used[i] = true // mark both as consumed
+                used[j] = true
+                break // found the one partner for i, no need to keep scanning j
+            }
+        }
+        // if the inner loop finished without a break, no partner exists for i
+    }
+
+    return count
+}
+```
+
 This works, but it's **O(n²)**. For every element, you potentially scan the entire remaining array.
 
 But notice something important about what we're doing here:

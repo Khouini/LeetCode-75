@@ -5,24 +5,48 @@ import (
 	"sort"
 )
 
+/*func maxOperations(nums []int, k int) int {
+	n := len(nums)
+	used := make([]bool, n)
+	count := 0
+	for i := 0; i < n; i++ {
+		if used[i] {
+			continue
+		}
+		for j := i + 1; j < n; j++ {
+			if used[j] {
+				continue
+			}
+			if nums[i]+nums[j] == k {
+				used[i] = true
+				used[j] = true
+				count++
+				break
+			}
+		}
+	}
+	return count
+}*/
+
 func maxOperations(nums []int, k int) int {
 	sort.Ints(nums)
-	L, R := 0, len(nums)-1
 	count := 0
+	n := len(nums)
+	L := 0
+	R := n - 1
 
 	for L < R {
 		sum := nums[L] + nums[R]
 		if sum == k {
+			L++
+			R--
 			count++
-			L++
+		} else if sum > k {
 			R--
-		} else if sum < k {
-			L++
 		} else {
-			R--
+			L++
 		}
 	}
-
 	return count
 }
 

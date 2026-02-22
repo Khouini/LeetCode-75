@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
-/*func maxOperations(nums []int, k int) int {
+func maxOperations_BruteForce(nums []int, k int) int {
 	n := len(nums)
 	used := make([]bool, n)
 	count := 0
@@ -25,9 +26,9 @@ import (
 		}
 	}
 	return count
-}*/
+}
 
-/*func maxOperations(nums []int, k int) int {
+func maxOperations_TwoPointers(nums []int, k int) int {
 	sort.Ints(nums)
 	count := 0
 	n := len(nums)
@@ -47,9 +48,9 @@ import (
 		}
 	}
 	return count
-}*/
+}
 
-func maxOperations(nums []int, k int) int {
+func maxOperations_HashMap(nums []int, k int) int {
 	waitingRoom := make(map[int]int)
 	count := 0
 
@@ -66,6 +67,6 @@ func maxOperations(nums []int, k int) int {
 }
 
 func main() {
-	fmt.Println(maxOperations([]int{1, 2, 3, 4}, 5))    // 2
-	fmt.Println(maxOperations([]int{3, 1, 3, 4, 3}, 6)) // 1
+	fmt.Println(maxOperations_HashMap([]int{1, 2, 3, 4}, 5))    // 2
+	fmt.Println(maxOperations_HashMap([]int{3, 1, 3, 4, 3}, 6)) // 1
 }

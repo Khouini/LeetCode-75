@@ -23,16 +23,13 @@ func compress(chars []byte) int {
 			chars[characterGroupIndex] = el // write the character!
 		} else {
 			count++
-			isCount2 := count == 2
-			isModulo10 := count%10 == 0
-			if isCount2 || isModulo10 {
-				result++
-			}
+			digits := strconv.Itoa(count)
 			writeIndex := characterGroupIndex + 1
-			for _, c := range strconv.Itoa(count) {
+			for _, c := range digits {
 				chars[writeIndex] = byte(c)
 				writeIndex++ // advance after each digit
 			}
+			result = characterGroupIndex + 1 + len(digits)
 		}
 
 	}

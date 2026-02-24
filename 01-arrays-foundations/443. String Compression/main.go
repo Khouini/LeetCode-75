@@ -1,11 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func compress(chars []byte) int {
 	lastCharacter := chars[0]
 	count := 1
 	result := 1
+	characterGroupIndex := 0
 	for i, el := range chars {
 		// fmt.Printf("%c\n", el)
 		if i == 0 {
@@ -15,6 +19,8 @@ func compress(chars []byte) int {
 			count = 1
 			result++
 			lastCharacter = el
+			characterGroupIndex = result - 1
+			chars[characterGroupIndex] = el // write the character!
 		} else {
 			count++
 			isCount2 := count == 2
@@ -22,10 +28,18 @@ func compress(chars []byte) int {
 			if isCount2 || isModulo10 {
 				result++
 			}
+			writeIndex := characterGroupIndex + 1
+			for _, c := range strconv.Itoa(count) {
+				chars[writeIndex] = byte(c)
+				writeIndex++ // advance after each digit
+			}
 		}
 
 	}
 
+	chars = chars[:result]
+
+	fmt.Println(string(chars))
 	return result
 }
 

@@ -5,37 +5,58 @@ import (
 	"strconv"
 )
 
+// func compress(chars []byte) int {
+// 	curChar := chars[0]
+// 	count := 1
+// 	writeLen := 1
+// 	groupStart := 0
+// 	for i, ch := range chars {
+// 		if i == 0 {
+// 			continue
+// 		}
+// 		if ch != curChar {
+// 			count = 1
+// 			writeLen++
+// 			curChar = ch
+// 			groupStart = writeLen - 1
+// 			chars[groupStart] = ch // write the character!
+// 		} else {
+// 			count++
+// 			digits := strconv.Itoa(count)
+// 			digitPos := groupStart + 1
+// 			for _, c := range digits {
+// 				chars[digitPos] = byte(c)
+// 				digitPos++
+// 			}
+// 			writeLen = groupStart + 1 + len(digits)
+// 		}
+// 	}
+
+// 	chars = chars[:writeLen]
+
+//		fmt.Println(string(chars))
+//		return writeLen
+//	}
 func compress(chars []byte) int {
-	curChar := chars[0]
-	count := 1
-	writeLen := 1
-	groupStart := 0
-	for i, ch := range chars {
-		if i == 0 {
-			continue
-		}
-		if ch != curChar {
-			count = 1
-			writeLen++
-			curChar = ch
-			groupStart = writeLen - 1
-			chars[groupStart] = ch // write the character!
-		} else {
+	write, read := 0, 0
+	for read < len(chars) {
+
+		currChar := chars[read]
+		count := 0
+		for read < len(chars) && chars[read] == currChar {
 			count++
-			digits := strconv.Itoa(count)
-			digitPos := groupStart + 1
-			for _, c := range digits {
-				chars[digitPos] = byte(c)
-				digitPos++
+			read++
+		}
+		chars[write] = currChar
+		write++
+		if count > 1 {
+			for _, c := range strconv.Itoa(count) {
+				chars[write] = byte(c)
+				write++
 			}
-			writeLen = groupStart + 1 + len(digits)
 		}
 	}
-
-	chars = chars[:writeLen]
-
-	fmt.Println(string(chars))
-	return writeLen
+	return write
 }
 
 func main() {

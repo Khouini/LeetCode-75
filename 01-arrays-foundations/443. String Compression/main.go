@@ -6,38 +6,36 @@ import (
 )
 
 func compress(chars []byte) int {
-	lastCharacter := chars[0]
+	curChar := chars[0]
 	count := 1
-	result := 1
-	characterGroupIndex := 0
-	for i, el := range chars {
-		// fmt.Printf("%c\n", el)
+	writeLen := 1
+	groupStart := 0
+	for i, ch := range chars {
 		if i == 0 {
 			continue
 		}
-		if el != lastCharacter {
+		if ch != curChar {
 			count = 1
-			result++
-			lastCharacter = el
-			characterGroupIndex = result - 1
-			chars[characterGroupIndex] = el // write the character!
+			writeLen++
+			curChar = ch
+			groupStart = writeLen - 1
+			chars[groupStart] = ch // write the character!
 		} else {
 			count++
 			digits := strconv.Itoa(count)
-			writeIndex := characterGroupIndex + 1
+			digitPos := groupStart + 1
 			for _, c := range digits {
-				chars[writeIndex] = byte(c)
-				writeIndex++ // advance after each digit
+				chars[digitPos] = byte(c)
+				digitPos++
 			}
-			result = characterGroupIndex + 1 + len(digits)
+			writeLen = groupStart + 1 + len(digits)
 		}
-
 	}
 
-	chars = chars[:result]
+	chars = chars[:writeLen]
 
 	fmt.Println(string(chars))
-	return result
+	return writeLen
 }
 
 func main() {

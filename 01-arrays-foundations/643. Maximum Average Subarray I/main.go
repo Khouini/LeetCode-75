@@ -5,26 +5,26 @@ import (
 	"math"
 )
 
-// func findMaxAverage(nums []int, k int) float64 {
-// 	maxAverage := -math.MaxFloat64
-// 	for i := 0; i < len(nums); i++ {
-// 		isExceded := i+k > len(nums)
-// 		if isExceded {
-// 			break
-// 		}
-// 		limit := i + k
-// 		sum := float64(0)
-// 		for j := i; j < limit; j++ {
-// 			sum = sum + float64(nums[j])
-// 		}
-// 		average := sum / float64(k)
-// 		if average > maxAverage {
-// 			maxAverage = average
-// 		}
-// 	}
+/*func findMaxAverage(nums []int, k int) float64 {
+	maxAverage := -math.MaxFloat64
+	for i := 0; i < len(nums); i++ {
+		isExceded := i+k > len(nums)
+		if isExceded {
+			break
+		}
+		limit := i + k
+		sum := float64(0)
+		for j := i; j < limit; j++ {
+			sum = sum + float64(nums[j])
+		}
+		average := sum / float64(k)
+		if average > maxAverage {
+			maxAverage = average
+		}
+	}
 
-// 	return maxAverage
-// }
+	return maxAverage
+}*/
 
 func findMaxAverage(nums []int, k int) float64 {
 	currentSum := float64(0)

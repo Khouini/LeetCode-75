@@ -22,9 +22,10 @@ func longestOnes(nums []int, k int) int {
 			L++
 		}
 
+		size := R - L + 1
 		// Update best window size
-		if R-L+1 > max {
-			max = R - L + 1
+		if size > max {
+			max = size
 		}
 	}
 

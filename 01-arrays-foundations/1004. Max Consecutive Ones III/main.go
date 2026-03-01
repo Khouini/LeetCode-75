@@ -5,28 +5,30 @@ import "fmt"
 // longestOnes returns the maximum number of consecutive 1s in the array
 // if you can flip at most k zeros to ones.
 func longestOnes(nums []int, k int) int {
-	L := 0                   // Left pointer of the sliding window
-	zerosCount := 0          // Number of zeros in the current window
-	max := 0                 // Maximum length of valid window found
-	n := len(nums)           // Length of the input array
-	for R := 0; R < n; R++ { // R is the right pointer of the window
+	L := 0
+	zerosCount := 0
+	max := 0
+
+	for R := 0; R < len(nums); R++ {
 		if nums[R] == 0 {
-			zerosCount++ // Increment zero count if current element is zero
+			zerosCount++
 		}
-		// Shrink window from the left if zeros exceed k
+
+		// Shrink window until we have at most k zeros
 		for zerosCount > k {
 			if nums[L] == 0 {
-				zerosCount-- // Decrement zero count when moving left pointer
+				zerosCount--
 			}
-			L++ // Move left pointer forward
+			L++
 		}
-		// Update max if the current window is larger
+
+		// Update best window size
 		if R-L+1 > max {
 			max = R - L + 1
 		}
 	}
 
-	return max // Return the largest window size found
+	return max
 }
 
 func main() {

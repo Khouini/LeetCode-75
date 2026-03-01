@@ -2,8 +2,6 @@ package main
 
 import "fmt"
 
-// longestOnes returns the maximum number of consecutive 1s in the array
-// if you can flip at most k zeros to ones.
 func longestOnes(nums []int, k int) int {
 	L := 0
 	zerosCount := 0
@@ -33,6 +31,5 @@ func longestOnes(nums []int, k int) int {
 }
 
 func main() {
-	// Example usage: should print the max consecutive 1s with at most 2 zero flips
 	fmt.Println(longestOnes([]int{1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0}, 2))
 }

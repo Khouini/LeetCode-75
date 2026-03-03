@@ -11,15 +11,6 @@ func longestSubarray(nums []int) int {
 
 	max := 0
 	for R := 0; R < n; R++ {
-		if nums[R] == 1 {
-			size := R - L
-			if lastZeroIndex == -1 {
-				size = size + 1
-			}
-			if size > max {
-				max = size
-			}
-		}
 
 		if nums[R] == 0 {
 			if lastZeroIndex != -1 {
@@ -27,11 +18,14 @@ func longestSubarray(nums []int) int {
 			}
 			lastZeroIndex = R
 		}
+
+		size := R - L
+		if size > max {
+			max = size
+		}
+
 	}
 
-	if lastZeroIndex == -1 {
-		return n - 1
-	}
 	return max
 }
 

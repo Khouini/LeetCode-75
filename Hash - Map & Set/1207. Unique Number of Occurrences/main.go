@@ -10,13 +10,13 @@ func uniqueOccurrences(arr []int) bool {
 		occurences[el]++
 	}
 
-	seen := make(map[int]bool)
+	seen := make(map[int]struct{})
 
 	for _, el := range occurences {
-		if seen[el] {
+		if _, exists := seen[el]; exists {
 			return false
 		}
-		seen[el] = true
+		seen[el] = struct{}{}
 	}
 
 	return true

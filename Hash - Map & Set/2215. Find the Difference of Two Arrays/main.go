@@ -17,27 +17,21 @@ func findDifference(nums1 []int, nums2 []int) [][]int {
 	}
 
 	result1 := make([]int, 0)
-	isPut1 := make(map[int]bool)
-	for _, num := range nums1 {
-		if nums2Set[num] == false && !isPut1[num] {
+	for num := range nums1Set {
+		if !nums2Set[num] {
 			result1 = append(result1, num)
-			isPut1[num] = true
 		}
 	}
 
 	result2 := make([]int, 0)
-	isPut2 := make(map[int]bool)
 
-	for _, num := range nums2 {
-		if nums1Set[num] == false && !isPut2[num] {
+	for num := range nums2Set {
+		if !nums1Set[num] {
 			result2 = append(result2, num)
-			isPut2[num] = true
 		}
 	}
 
-	matrix := [][]int{result1, result2}
-
-	return matrix
+	return [][]int{result1, result2}
 }
 
 func main() {

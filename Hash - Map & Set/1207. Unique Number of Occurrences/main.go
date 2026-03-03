@@ -2,26 +2,21 @@ package main
 
 import (
 	"fmt"
-	"sort"
 )
 
 func uniqueOccurrences(arr []int) bool {
 	occurences := make(map[int]int)
-	values := []int{}
-	n := len(arr)
-	for i := 0; i < n; i++ {
-		occurences[arr[i]]++
-	}
-	for _, v := range occurences {
-		values = append(values, v)
+	for _, el := range arr {
+		occurences[el]++
 	}
 
-	sort.Ints(values)
+	seen := make(map[int]bool)
 
-	for i := 0; i < len(values)-1; i++ {
-		if values[i] == values[i+1] {
+	for _, el := range occurences {
+		if seen[el] {
 			return false
 		}
+		seen[el] = true
 	}
 
 	return true

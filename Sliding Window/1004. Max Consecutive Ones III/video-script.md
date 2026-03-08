@@ -124,37 +124,17 @@ for i → 0 to n:
  window: [1,1,1,0,0]  → 2 zeros → valid ✓
 ```
 
-### Step B — Two moves only
+### Step B — Two moves
+
+**SAY:**
+
+> "R is the explorer — it always moves right, adding one element at a time. L is the cleanup — it only moves when the window breaks the rule. Too many zeros? Slide L right until one zero falls off the left side. That's it."
 
 **WRITE:**
 
 ```
-Two moves:
-
-1. EXPAND  → move R right (grow the window)
-   "Let's try to include one more element"
-
-2. SHRINK  → move L right (shrink the window)
-   "We have too many zeros, let go of the leftmost element"
-```
-
-**SAY:**
-
-> "R always moves right, one step at a time — we're always trying to grow. But if the window has MORE than k zeros, it's invalid. So we shrink from the left until it's valid again."
-
-### Step C — Why shrink from the left?
-
-**SAY:**
-
-> "Why move L forward? Why not move R back? Think about it — R just added a new zero that broke our window. Everything to the LEFT of R was already explored. The only way to FIX the window is to push L forward, hoping to drop a zero off the left side."
-
-**WRITE:**
-
-```
-Window too many zeros?
-→ Move R back?  NO — we'd undo progress
-→ Move L forward? YES — drop elements from the left
-   until we drop a zero, restoring the balance
+R → always moves right       (keep exploring)
+L → only moves when zeros > k  (drop from left until valid)
 ```
 
 ### Step D — Full walk-through

@@ -25,10 +25,6 @@ Best choice: flip index 5 and 10
                   6 consecutive 1s → answer: 6
 ```
 
-**SAY:**
-
-> "The trick is choosing WHICH zeros to flip. Let's figure that out step by step."
-
 ---
 
 ## Part 1 — Reframe the Problem (1 minute)
@@ -46,10 +42,6 @@ Best choice: flip index 5 and 10
 
 "Find the longest subarray with at most k zeros"
 ```
-
-**SAY (slow and clear):**
-
-> "Read that again. We don't actually flip anything. We just need to find the longest window in the array that contains at most k zeros. If a window has at most k zeros, we COULD flip them all, and the entire window becomes all 1s."
 
 **WRITE example:**
 
@@ -154,9 +146,7 @@ Two moves:
 
 **SAY:**
 
-> "This is the part that confused me at first. Why move L forward? Why not move R back?"
-
-> "Think about it — R just added a new zero that broke our window. Everything to the LEFT of R was already explored. The only way to FIX the window is to push L forward, hoping to drop a zero off the left side."
+> "Why move L forward? Why not move R back? Think about it — R just added a new zero that broke our window. Everything to the LEFT of R was already explored. The only way to FIX the window is to push L forward, hoping to drop a zero off the left side."
 
 **WRITE:**
 
@@ -262,17 +252,13 @@ L NEVER moves left. It only goes forward.
 Total work = n + n = O(n)
 ```
 
-**SAY:**
-
-> "Both pointers only move forward, and each can move at most n times. So the total number of operations is at most 2n, which is O(n). The inner while loop doesn't restart from scratch — it picks up where it left off."
-
 ---
 
 ## Part 5 — The Sliding Window Pattern (1 minute)
 
 **SAY:**
 
-> "This is the classic sliding window pattern. It shows up everywhere. Let me give you the template."
+> "This is the classic sliding window pattern."
 
 **WRITE:**
 
@@ -307,10 +293,6 @@ Key insights:
 3. Sliding window: expand R, shrink L when invalid → O(n)
 4. Both L and R only move forward → total work is O(n)
 ```
-
-**SAY:**
-
-> "The hardest part of this problem is the reframing — realizing you don't actually flip anything. Once you see it as 'find the longest window with at most k zeros,' the sliding window writes itself."
 
 ---
 
